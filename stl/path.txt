@@ -1,0 +1,5 @@
+C++ stl divided into 4 parts:
+Algorithms
+Containers(done)
+Functions(ommited as instructed)
+Iterators(done)

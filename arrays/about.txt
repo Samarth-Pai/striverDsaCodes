@@ -1,0 +1,6 @@
+We will be solving 41 different problems based on arrays
+Arrays are basically collections of element of same datatype
+When we declare an array, the garbage values will be stored if we declared inside main but will be filled with zeroes if declared globally
+At max
+We can declare an array of max 10^6 element inside main and 10^7 globally
+Array element are stored at random memory address

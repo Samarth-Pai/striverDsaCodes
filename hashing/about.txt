@@ -1,0 +1,37 @@
+Inside main we can declare an int array upto 1e6 and boot 1e7
+but we can declare an int array upto 1e7 globally and bool 1e8
+There are 256 characters so it is enough to keep array size upto 256 for character hashing
+
+Manual hashing using hash array
+Time complexity: 0(Q*N)
+
+Hashing using map:
+Time complexity:
+    Storing: O(log(N)) where N is the no. of elements in map
+    Fetching: 0(log(N))
+
+Hashing using unordered map:
+Time complexity:
+    Storing: O(1) for best and average case and O(N) for worst case that very rarely happens
+
+Hashing methods:
+1) Division method: modulus by 10 is taken and sorted under each last digit array
+2) Folding method
+3) Mad square method
+
+1) For eg.
+take an array [2, 5, 16, 28, 139, 38, 48, 28, 18]
+              [2, 5,  6,  8,   9,  8,  8,  8,  8]  
+
+0 -> 
+1 -> 
+2 -> 5
+3 -> 
+4 -> 
+5 -> 5
+6 -> 16
+7 -> 
+8 -> 18-> 28 -> 28 -> 38 -> 48
+9 -> 139
+
+Collision: if many values end up in same index(for eg. 8 in the above case), due to which 0(N) happens in unordered_map on blue moon

@@ -1,0 +1,5 @@
+Recursion: a function calling itself until a condition is satisfied
+Base case: the condition which ends the Recursion
+Stack space: the non completed functions that are yet to be completed
+Stack overflow: the memory stack that gets full by storing each functions that have not completed the execution
+Recursion tree: diagram used to represent the process of Recursion
