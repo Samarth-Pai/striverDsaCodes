@@ -3,6 +3,7 @@
 #include<algorithm>
 using namespace std;
 
+
 void rotate(vector<vector<int>>& matrix) {
     int n = matrix.size(), m = matrix[0].size();
     vector<vector<int>>newMatrix;
@@ -15,23 +16,56 @@ void rotate(vector<vector<int>>& matrix) {
     matrix = newMatrix;
 }
 
-// My own
-// Brute force approach : rotate and trim with recursion
-
 vector<int>concat(vector<int>a, vector<int>b){
     a.insert(a.end(), b.begin(), b.end());
     return a;
 }
 
-vector<int> spiralOrder(vector<vector<int>> matrix) {
-    int n = matrix.size();
-    if(n==0) return {};
-    int m = matrix.size();
-    vector<int>eles;
-    eles.insert(eles.end(), matrix[0].begin(), matrix[0].end());
-    matrix.erase(matrix.begin());
-    rotate(matrix);
-    return concat(eles, spiralOrder(matrix));
+// My own
+// Brute force approach : rotate and trim with recursion
+// vector<int> spiralOrder(vector<vector<int>> matrix) {
+//     int n = matrix.size();
+//     if(n==0) return {};
+//     int m = matrix.size();
+//     vector<int>eles;
+//     eles.insert(eles.end(), matrix[0].begin(), matrix[0].end());
+//     matrix.erase(matrix.begin());
+//     rotate(matrix);
+//     return concat(eles, spiralOrder(matrix));
+// }
+
+// Optimal solution
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+    int n = matrix.size(), m = matrix[0].size();
+    int top = 0, bottom = n-1, left = 0, right = m-1, i;
+    vector<int>elements;
+
+    while(top<=bottom and left<=right){
+        // right
+        for(i = left;i<=right;i++)
+            elements.push_back(matrix[top][i]);
+        top++;
+
+        // down
+        for(i = top;i<=bottom;i++)
+            elements.push_back(matrix[i][right]);
+        right--;
+
+        // left
+        if(top<=bottom){
+            for(i = right;i>=left;i--)
+                elements.push_back(matrix[bottom][i]);
+            bottom--;
+        }
+
+        // up
+        if(left<=right){
+            for(i = bottom;i>=top;i--)
+                elements.push_back(matrix[i][left]);
+            left++;
+        }
+    }
+    return elements;
 }
 
 int main(){
