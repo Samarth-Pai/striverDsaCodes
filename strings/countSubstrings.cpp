@@ -2,6 +2,20 @@
 #include<map>
 
 using namespace std;
+
+// Brute force approach: my own
+// int countSubstr(string str, int k) {
+//     int n = str.length();
+//     int nSubsets = 0;
+//     for(int i =  0;i<n;i++){
+//         for(int j = 0;j<n-i;j++){
+//             unordered_set<int> st(str.begin() + j, str.begin()+i+j + 1);
+//             nSubsets+=st.size() == k;
+//         }
+//     }
+//     return nSubsets;
+// }
+
 // Brute force approach
 // TC: O(N^2)
 // SC: O(N)
