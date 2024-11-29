@@ -11,11 +11,30 @@ class Node{
 };
 
 
-// Node * insert(Node * head, int n, int pos, int val) {
-//     if(pos == 0) return new Node(val);
-//     Node* temp = head;
-    
-// }
+Node * insert(Node * head, int n, int pos, int val) {
+    if(head == nullptr){
+        if(pos == 0) return new Node(val);
+        else return nullptr;
+    }
+    if(pos == 0){
+        Node* temp = new Node(val);
+        temp->next = head;
+        return temp;
+    }
+    Node* temp = head, *prev = nullptr;
+    int cnt = 0;
+    while(temp!=nullptr){
+        if(cnt == pos-1){
+            Node* newNode = new Node(val);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            return head;
+        }
+        cnt++;
+        temp = temp->next;
+    }
+    return head;
+}
 
 int main(){
     int n, ele, k;
@@ -33,7 +52,7 @@ int main(){
         ll = ll->next;
     }
 
-    cout<<"Enter the element to be inserted at the end: ";
+    cout<<"Enter the element to be inserted: ";
     cin>>ele;
     cout<<"Enter the index of the element to be inserted at: ";
     cin>>k;
