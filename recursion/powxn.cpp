@@ -2,7 +2,7 @@
 #include<climits>
 using namespace std;
 
-double myPow(double x, int n) {
+long long myPow(long long x, long long n) {
         if(x==1) return 1;
         else if(x==-1)
             if(n%2==0) return 1;
@@ -10,7 +10,7 @@ double myPow(double x, int n) {
         if(n<-100000 or n==INT_MAX)
             return 0;
         if(n==0) return 1;
-        double ans;
+        long long ans;
         if(n<0)
             ans = 1/x*myPow(x, n+1);
         else
