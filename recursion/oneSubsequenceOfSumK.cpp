@@ -7,7 +7,7 @@ bool printS(int ind,vector<int> &ds, int s, int sum, vector<int> &a, int n){
     }
     ds.push_back(a[ind]);
     s+=a[ind];
-    if(printS(ind+1, ds, s, sum, a, n)) return true;;
+    if(printS(ind+1, ds, s, sum, a, n)) return true;
     ds.pop_back();
     s-=a[ind];
     if(printS(ind+1, ds, s, sum, a, n)) return true;
