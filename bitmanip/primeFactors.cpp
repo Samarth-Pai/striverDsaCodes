@@ -62,7 +62,7 @@ vector<int> AllPrimeFactors(int n){
             }
         }
     }
-    if(n!=1) res.push_back(n); // if a number is not divisible by its square root, then the number itself is one of its prime factors
+    if(n!=1) res.push_back(n);
     return res;
 }
 int main(){
