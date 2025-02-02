@@ -28,6 +28,7 @@ using namespace std;
 //     return to_string(*min_element(combs.begin(), combs.end()));
 // }
 
+// Optimal solution
 // TC: O(3N) + O(K)
 // SC: O(2N)
     string removeKdigits(string num, int k) {
