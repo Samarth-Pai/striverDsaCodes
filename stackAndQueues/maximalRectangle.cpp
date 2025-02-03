@@ -53,6 +53,8 @@ vector<vector<int>> prefixSum(vector<vector<char>> &matrix){
     }
     return res;
 }
+
+// Optimal solution
 // TC: O(M*N) + O(N*2M)
 // SC: O(N*M) + O(N)
 int maximalRectangle(vector<vector<char>> &matrix){
