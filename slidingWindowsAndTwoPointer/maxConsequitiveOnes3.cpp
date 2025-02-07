@@ -18,18 +18,35 @@ using namespace std;
 //     return maxi;
 // }
 
-// Optimal solution: sliding window
+// Better approach: sliding window: shrinking
 // TC: O(2N)
+// SC: O(1)
+// int longestOnes(vector<int> &nums, int k){
+//     int l = 0, r = 0, maxi = 0, zeroes = 0, n = nums.size();
+//     while(r<n){
+//         if(nums[r] == 0)zeroes++;
+//         if(zeroes>k){
+//             while(nums[l]){
+//                 l++;
+//             }
+//             zeroes--;
+//             l++;
+//         }
+//         maxi = max(maxi, r - l + 1);
+//         r++;
+//     }
+//     return maxi;
+// }
+
+// Optimal solution: sliding window: non-shrinking
+// TC: O(N)
 // SC: O(1)
 int longestOnes(vector<int> &nums, int k){
     int l = 0, r = 0, maxi = 0, zeroes = 0, n = nums.size();
     while(r<n){
-        if(nums[r] == 0)zeroes++;
+        if(nums[r] == 0) zeroes++;
         if(zeroes>k){
-            while(nums[l]){
-                l++;
-            }
-            zeroes--;
+            if(nums[l] == 0) zeroes--;
             l++;
         }
         maxi = max(maxi, r - l + 1);
