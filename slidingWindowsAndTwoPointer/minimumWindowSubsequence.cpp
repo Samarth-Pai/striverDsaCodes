@@ -28,32 +28,32 @@ using namespace std;
 // Optimal solution: sliding window and two pointer
 // TC: O(N^2)
 // SC: O(1)
-// string minWindow(string s, string t){
-//     int minlen = INT_MAX, m = s.length(), n = t.length(), i = 0, j = 0, end, sIndex = -1;
-//     while(i<m){
-//         if(s[i] == t[j]){
-//             j++;
-//             if(j == n){
-//                 end = i;
-//                 j--;
-//                 while(j>=0){
-//                     if(s[i] == t[j])
-//                         j--;
-//                     i--;
-//                 }
-//                 j++;
-//                 i++;
-//                 if(end - i + 1 < minlen){
-//                     minlen = end - i + 1;
-//                     sIndex = i;
-//                 }
-//             }
-//         }
-//         i++;
-//     }
-//     if(sIndex == -1) return "";
-//     return s.substr(sIndex, minlen);
-// }
+string minWindow(string s, string t){
+    int minlen = INT_MAX, m = s.length(), n = t.length(), i = 0, j = 0, end, sIndex = -1;
+    while(i<m){
+        if(s[i] == t[j]){
+            j++;
+            if(j == n){
+                end = i;
+                j--;
+                while(j>=0){
+                    if(s[i] == t[j])
+                        j--;
+                    i--;
+                }
+                j++;
+                i++;
+                if(end - i + 1 < minlen){
+                    minlen = end - i + 1;
+                    sIndex = i;
+                }
+            }
+        }
+        i++;
+    }
+    if(sIndex == -1) return "";
+    return s.substr(sIndex, minlen);
+}
 
 int main(){
     string s, t;
