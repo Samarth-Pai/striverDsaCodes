@@ -4,6 +4,16 @@ using namespace std;
 class maxHeap{
     vector<int> H;
     public:
+
+    // O(N)
+    maxHeap(vector<int> &arr){
+        int n = arr.size();
+        H = arr;
+        for(int i = n/2;i>=0;i--){
+            downheap(i);
+        }
+    }
+
     // O(1)
     int parent(int i){
         return (i - 1)/2;
@@ -73,13 +83,15 @@ class maxHeap{
 };
 
 int main(){
-    maxHeap h = maxHeap();
-    h.insert(10);
-    h.insert(2);
-    h.insert(4);
-    h.insert(5);
-    h.insert(7);
-    h.insert(2);
+    // maxHeap h = maxHeap();
+    // h.insert(10);
+    // h.insert(2);
+    // h.insert(4);
+    // h.insert(5);
+    // h.insert(7);
+    // h.insert(2);
+    vector<int> arr = {10, 2, 4, 5, 7, 2};
+    maxHeap h = maxHeap(arr);
     vector<int> res = h.heapsort();
     for(int i: res) cout<<i<<" ";
     cout<<endl;
