@@ -19,7 +19,7 @@ using namespace std;
 //     return step(nums, 0, 0);
 // }
 
-// Optimal solution: two pointer greedy algorithm
+// Optimal solution: two pointer greedy approach
 // TC: O(N)
 // SC: O(1)
 int jump(vector<int>& nums) {
