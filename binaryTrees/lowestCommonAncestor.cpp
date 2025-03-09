@@ -22,25 +22,41 @@ void findn(TreeNode *root, TreeNode *p, TreeNode *q, pbb &found){
 }
 // Brute approach
 // TC: O(N^2)
-// SC: O(N)
+// SC: O(2N)
+// TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+//     queue<TreeNode*> qu;
+//     qu.push(root);
+//     TreeNode *ans = nullptr;
+//     while(!qu.empty()){
+//         TreeNode * node = qu.front();
+//         qu.pop();
+//         pbb found;
+//         findn(node, p, q, found);
+//         if(found.first and found.second){
+//             ans = node;
+//         }
+//         if(node->left)
+//             qu.push(node->left);
+//         if(node->right)
+//             qu.push(node->right);
+//     }
+//     return ans;
+// }
+
+// Optimal solution:
+// TC: O(N)
+// SC: O(N) auxilliary space
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-    queue<TreeNode*> qu;
-    qu.push(root);
-    TreeNode *ans = nullptr;
-    while(!qu.empty()){
-        TreeNode * node = qu.front();
-        qu.pop();
-        pbb found;
-        findn(node, p, q, found);
-        if(found.first and found.second){
-            ans = node;
-        }
-        if(node->left)
-            qu.push(node->left);
-        if(node->right)
-            qu.push(node->right);
-    }
-    return ans;
+    if(root == nullptr or root == p or root == q)
+        return root;
+    TreeNode *l = lowestCommonAncestor(root->left, p, q);
+    TreeNode *r = lowestCommonAncestor(root->right, p, q);
+    if(l == nullptr)
+        return r;
+    else if(r == nullptr)
+        return l;
+    else
+        return root;
 }
 int main(){
     TreeNode *root = new TreeNode(3);
