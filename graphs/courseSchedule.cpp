@@ -2,7 +2,7 @@
 #include<vector>
 #include<queue>
 using namespace std;
-vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
     vector<vector<int>> adj(numCourses);
     vector<int> in(numCourses);
     for(vector<int> i: prerequisites){
@@ -10,33 +10,26 @@ vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         in[i[0]]++;
     }
     queue<int> q;
-    for(int i = 0;i<numCourses;i++){
+    for(int i = 0;i<numCourses;i++)
         if(in[i] == 0)
             q.push(i);
-    }
-    vector<int> res;
+    int cnt = 0;
     while(!q.empty()){
         int node = q.front();
         q.pop();
-        res.push_back(node);
+        cnt++;
         for(int i: adj[node]){
             in[i]--;
             if(in[i] == 0)
                 q.push(i);
         }
     }
-    if(res.size() != numCourses)
-        return {};
-    return res;
+    return cnt == numCourses;
 }
 int main(){
-    int numCourses = 4;
-    vector<vector<int>> prerequisites = {
-        {1, 0}, {2, 0}, {3, 1}, {3, 2}
+    int numCourses = 2;
+    vector<vector<int>> prer = {
+        {1, 0}
     };
-    vector<int> order = findOrder(numCourses, prerequisites);
-    cout<<"Order: ";
-    for(int i: order)
-        cout<<i<<' ';
-    cout<<endl;
+    cout<<"Can finish all courses? "<<canFinish(numCourses, prer)<<endl;
 }
