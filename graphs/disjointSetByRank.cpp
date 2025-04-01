@@ -23,6 +23,7 @@ class DisjointSet{
         return parent[node] = findUPar(parent[node]);
     }
 
+    // TC: O(4 alpha)
     void UnionByRank(int u, int v){
         int ulp_u = findUPar(u);
         int ulp_v = findUPar(v);
