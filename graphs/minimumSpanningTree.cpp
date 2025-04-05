@@ -1,6 +1,7 @@
 #include<iostream>
 #include<queue>
 #include<vector>
+#include<algorithm>
 using namespace std;
 // Requirements for MST
 // Required data structures
@@ -38,6 +39,7 @@ using namespace std;
 // Prim's algorithm
 // TC: O(E + 2ElogE)
 // SC: O(E)
+/*
 int spanningTree(int V, vector<vector<int>> adj[]) {
     vector<bool> vis(V);
     // {dist, {node, parent}}
@@ -63,6 +65,69 @@ int spanningTree(int V, vector<vector<int>> adj[]) {
     }
     return sum;
 }
+*/
+
+class DSU{
+    vector<int> rank, parent;
+    public:
+    DSU(int n){
+        rank.resize(n, 0);
+        parent.resize(n, 0);
+        for(int i = 0;i<n;i++)
+            parent[i] = i;
+    }
+
+    void unionByRank(int u, int v){
+        int ultPu = findUPar(u);
+        int ultPv = findUPar(v);
+        if(ultPu == ultPv)
+            return;
+        else if(rank[ultPu] < rank[ultPv]){
+            parent[ultPu] = ultPv;
+        }
+        else if(rank[ultPv] > rank[ultPu]){
+            parent[ultPv] = ultPu;
+        }
+        else{
+            parent[ultPu] = ultPv;
+            rank[ultPv]++;
+        }
+    }
+
+    int findUPar(int u){
+        if(parent[u] == u)
+            return u;
+        return parent[u] = findUPar(parent[u]);
+    }
+};
+
+// Kruskal's algorithm
+int spanningTree(int n, vector<vector<int>> adj[]) {
+    // O(N + E)
+    vector<pair<int, pair<int, int>>> edges;
+    for(int u = 0;u<n;u++){
+        for(vector<int> edge: adj[u]){
+            int v = edge[0];
+            int wt = edge[1];
+            edges.push_back({wt, {u, v}});
+        }
+    }
+    // O(M log M)
+    sort(edges.begin(), edges.end());
+    DSU dsu(n);
+    int maxwt = 0;
+    // O(M * 4 alpha * 2)
+    for(auto p: edges){
+        int wt = p.first;
+        int u = p.second.first;
+        int v = p.second.second;
+        if(dsu.findUPar(u) != dsu.findUPar(v)){
+            maxwt += wt;
+            dsu.unionByRank(u, v);
+        }
+    }
+    return maxwt;
+} 
 int main(){
     vector<vector<int>> adj[] = {
         {{1, 5}, {2, 1}},
