@@ -1,0 +1,23 @@
+Way of solving a dp question
+1. Tabulation: bottom up: go from base case to required answer
+2. Memoization: top down
+Memoization -> Tabulation -> Space optimization
+
+Steps of memoization:
+0. Declare an array of size no. of subproblems
+1. Storing the answer which has been computed for every subproblems
+2. Checking if the subproblem has been previously solved
+
+Detection of a DP problems:
+Count the total number of ways
+Min or max output
+Try all possible ways(count/ figure out best way) using recursion
+
+Shortcuts
+1. Try to represent the problem in terms of index
+2. Do all possible stuffs on that index according to the problem statement
+3. If question states count: Sum up all stuffs
+    else if question states min/ max: then find min/ max of all the stuffs
+
+Thumb rule:
+There will be always space optimization when there is i-2 i- 1
