@@ -21,3 +21,11 @@ Shortcuts
 
 Thumb rule:
 There will be always space optimization when there is i-2 i- 1
+
+DP on grids/ 2D Matrix
+-> Count paths
+-> Count path with obstacles
+-> Minimum path Sum
+-> Max path Sum
+-> Triangle
+-> 2 start points
