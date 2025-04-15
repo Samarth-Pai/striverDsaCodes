@@ -29,3 +29,8 @@ DP on grids/ 2D Matrix
 -> Max path Sum
 -> Triangle
 -> 2 start points
+
+DP on subsequences
+1. Express in (ind, target)
+2. Explore possibilites of that index
+3. Return true/ false
