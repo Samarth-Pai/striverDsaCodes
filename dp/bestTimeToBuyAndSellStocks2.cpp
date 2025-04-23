@@ -53,25 +53,41 @@ int f(int ind, bool buy, vector<int> &prices, vector<vector<int>> &dp){
 // DP: Space optmization
 // TC: O(2*N)
 // SC: O(4)
+// int maxProfit(vector<int>& prices) {
+//     int  n = prices.size();
+//     vector<int> dp(2), curr(2);
+//     for(int i = n-1;i>=0;i--){
+//         for(int buy = 0;buy<2;buy++){
+//             int profit = 0;
+//             if(buy){
+//                 profit = max(-prices[i] + dp[0],
+//                     dp[1]);
+//             }
+//             else{
+//                 profit = max(prices[i] + dp[1],
+//                     dp[0]);
+//             }
+//             curr[buy] = profit;
+//         }
+//         dp = curr;
+//     }
+//     return dp[1];
+// }
+
+// Greedy
+// TC: O(N)
+// SC: O(1)
 int maxProfit(vector<int>& prices) {
-    int  n = prices.size();
-    vector<int> dp(2), curr(2);
-    for(int i = n-1;i>=0;i--){
-        for(int buy = 0;buy<2;buy++){
-            int profit = 0;
-            if(buy){
-                profit = max(-prices[i] + dp[0],
-                    dp[1]);
-            }
-            else{
-                profit = max(prices[i] + dp[1],
-                    dp[0]);
-            }
-            curr[buy] = profit;
+    int  n = prices.size(), curr = prices[0], profit = 0;
+    for(int i = 1;i<n;i++){
+        if(prices[i] < curr)
+            curr = prices[i];
+        else{
+            profit += prices[i] - curr;
+            curr = prices[i];
         }
-        dp = curr;
     }
-    return dp[1];
+    return profit;
 }
 int main(){
     int n;
