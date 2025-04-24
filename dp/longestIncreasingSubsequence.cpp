@@ -54,7 +54,7 @@ int f(int ind, int prev_ind, vector<int> &nums, vector<vector<int>> &dp){
 //     int n = nums.size();
 //     vector<vector<int>> dp(n+1, vector<int>(n+1));
 //     for(int i = n-1;i>=0;i--){
-//         for(int j = -1;j<n;j++){
+//         for(int j = -1;j<i;j++){
 //             int notTake = dp[i+1][j+1];
 //             int take = 0;
 //             if(j == -1 or nums[i] > nums[j])
@@ -68,19 +68,36 @@ int f(int ind, int prev_ind, vector<int> &nums, vector<vector<int>> &dp){
 // DP: Space optimization
 // TC: O(N^2)
 // SC: O(N)
+// int lengthOfLIS(vector<int> &nums){
+//     int n = nums.size();
+//     vector<int> dp(n+1);
+//     for(int i = n-1;i>=0;i--){
+//         for(int j = -1;j<i;j++){
+//             int notTake = dp[j+1];
+//             int take = 0;
+//             if(j == -1 or nums[i] > nums[j])
+//                 take = 1 + dp[i+1];
+//             dp[j+1] = max(notTake, take);
+//         }
+//     }
+//     return dp[0];
+// }
+
+// Another approach
 int lengthOfLIS(vector<int> &nums){
     int n = nums.size();
-    vector<int> dp(n+1);
-    for(int i = n-1;i>=0;i--){
-        for(int j = -1;j<n;j++){
-            int notTake = dp[j+1];
-            int take = 0;
-            if(j == -1 or nums[i] > nums[j])
-                take = 1 + dp[i+1];
-            dp[j+1] = max(notTake, take);
+    vector<int> dp(n, 1);
+    for(int i = 1;i<n;i++){
+        for(int prev_ind = 0;prev_ind<i;prev_ind++){
+            if(nums[i] > nums[prev_ind]){
+                dp[i] = max(dp[i], 1 + dp[prev_ind]);
+            }
         }
     }
-    return dp[0];
+    int maxi = 0;
+    for(int i: dp)
+        maxi = max(maxi, i);
+    return maxi;
 }
 int main(){
     int n;
