@@ -2,6 +2,9 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
+// DP: Space optimization
+// TC: O(N^2)
+// SC: O(2N)
 vector<int> longestIncreasingSubsequence(int n, vector<int>& nums) {
     vector<int> dp(n, 1), hash(n);
     for(int i = 0;i<n;i++)

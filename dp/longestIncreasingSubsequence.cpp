@@ -84,21 +84,51 @@ int f(int ind, int prev_ind, vector<int> &nums, vector<vector<int>> &dp){
 // }
 
 // Another approach
+// int lengthOfLIS(vector<int> &nums){
+//     int n = nums.size();
+//     vector<int> dp(n, 1);
+//     for(int i = 1;i<n;i++){
+//         for(int prev_ind = 0;prev_ind<i;prev_ind++){
+//             if(nums[i] > nums[prev_ind]){
+//                 dp[i] = max(dp[i], 1 + dp[prev_ind]);
+//             }
+//         }
+//     }
+//     int maxi = 0;
+//     for(int i: dp)
+//         maxi = max(maxi, i);
+//     return maxi;
+// }
+
+int lowerBound(vector<int> &arr, int num){
+    int low = 0, high = arr.size()-1, mid;
+    while(low <= high){
+        mid = (low + high)/2;
+        if(arr[mid] >= num)
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return low;
+}
+
+// Binary search
+// TC: O(N*logN)
+// SC: O(1)
 int lengthOfLIS(vector<int> &nums){
     int n = nums.size();
-    vector<int> dp(n, 1);
-    for(int i = 1;i<n;i++){
-        for(int prev_ind = 0;prev_ind<i;prev_ind++){
-            if(nums[i] > nums[prev_ind]){
-                dp[i] = max(dp[i], 1 + dp[prev_ind]);
-            }
-        }
+    vector<int> temp;
+    for(int i = 0;i<n;i++){
+        int lb = lowerBound(temp, nums[i]);
+        if(lb == temp.size())
+            temp.push_back(nums[i]);
+        else
+            temp[lb] = nums[i];
     }
-    int maxi = 0;
-    for(int i: dp)
-        maxi = max(maxi, i);
-    return maxi;
+    return temp.size();
 }
+
+
 int main(){
     int n;
     cout<<"Enter array size: ";
