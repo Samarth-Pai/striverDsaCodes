@@ -34,3 +34,8 @@ DP on subsequences
 1. Express in (ind, target)
 2. Explore possibilites of that index
 3. Return true/ false
+
+Partition DP
+1. Start with entire block or array
+2. Try all partitions - Run a loop to try all the partitions
+3. Return the best possible two partitions
